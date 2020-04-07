@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+body {
+    background: #a8a8a8;
+}
+
+body input button {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+.container{
+    height: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: 0 auto;
+}
