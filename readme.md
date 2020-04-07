@@ -13,7 +13,7 @@ Desenvolvido utilizando React JS, HTML 5 e CSS, o mesmo consome a Api desenvolvi
 
 ## Rodando o projeto no terminal
 
-Para testar o projeto, pode ser baixar a pasta `publish` para  a máquina local e executar o seguinte comando a partir do terminal a partir da pasta.
+Para testar o projeto, pode ser baixar a pasta `publish` para  a máquina local e executar o seguinte comando no terminal a partir da publish.
 
 **dotnet copafilmes.api.dll**
 
