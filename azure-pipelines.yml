@@ -32,3 +32,23 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: 'publish'
+    zipAfterPublish: false
+
+- task: OctopusPack@4
+  inputs:
+    PackageId: 'CopaFilmes'
+    PackageFormat: 'NuPkg'
+    PackageVersion: '1.0.$(Build.BuildId)'
+    SourcePath: '$(build.artifactstagingdirectory)\CopaFilmes'
+- task: OctopusPush@4
+  inputs:
+    OctoConnectedServiceName: 'Octopus Café'
+    Space: 'Spaces-1'
+    Package: 'CopaFilmes.1.0.$(Build.BuildId).nupkg'
+    Replace: 'false'
