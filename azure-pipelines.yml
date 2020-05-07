@@ -1,54 +1,19 @@
-# ASP.NET Core (.NET Framework)
-# Build and test ASP.NET Core projects targeting the full .NET Framework.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
-trigger:
-- master
-
-pool:
-  vmImage: 'windows-latest'
-
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  project_name: 'CopaFilmes'
+  netcore_version: '3.1'
 
-steps:
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'publish'
-    publishWebProjects: true
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: false
-
-- task: OctopusPack@4
-  inputs:
-    PackageId: 'CopaFilmes'
-    PackageFormat: 'NuPkg'
-    PackageVersion: '1.0.$(Build.BuildId)'
-    SourcePath: '$(Build.ArtifactStagingDirectory)\CopaFilmes'
-- task: OctopusPush@4
-  inputs:
-    OctoConnectedServiceName: 'Octopus Café'
-    Space: 'Spaces-1'
-    Package: 'CopaFilmes.1.0.$(Build.BuildId).nupkg'
-    Replace: 'false'
+jobs:
+- job: Build
+  steps:
+  - script: |
+      pwd && ls -la
+      dotnet restore 
+      dotnet publish -c Release -o bin/Release/netcoreapp$(netcore_version)
+      mkdir artifact
+      cp -r $(project_name)/bin/Release/netcoreapp$(netcore_version) artifact/$(Build.SourceBranchName)
+    displayName: Build Application
+  - task: PublishPipelineArtifact@1
+    displayName: Store Application Artifact
+    inputs:
+      path: $(System.DefaultWorkingDirectory)/artifact
+      artifact: $(project_name)
