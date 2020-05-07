@@ -45,7 +45,7 @@ steps:
     PackageId: 'CopaFilmes'
     PackageFormat: 'NuPkg'
     PackageVersion: '1.0.$(Build.BuildId)'
-    SourcePath: '$(build.artifactstagingdirectory)\CopaFilmes'
+    SourcePath: '$(Build.ArtifactStagingDirectory)\CopaFilmes'
 - task: OctopusPush@4
   inputs:
     OctoConnectedServiceName: 'Octopus Café'
