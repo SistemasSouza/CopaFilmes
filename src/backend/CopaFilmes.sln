@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CopaFilmes.Api", "CopaFilmes.Api\CopaFilmes.Api.csproj", "{FC4F9872-0C8F-409F-93DC-FB1AE428B551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopaFilme.Business", "CopaFilme.Business\CopaFilme.Business.csproj", "{6D978040-91B9-4995-8AE7-B94898AE92C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CopaFilme.Business", "CopaFilme.Business\CopaFilme.Business.csproj", "{6D978040-91B9-4995-8AE7-B94898AE92C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopaFilmes.Data", "CopaFilmes.Data\CopaFilmes.Data.csproj", "{469A2219-8DC6-410A-8FC1-276C42906C8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CopaFilmes.Data", "CopaFilmes.Data\CopaFilmes.Data.csproj", "{469A2219-8DC6-410A-8FC1-276C42906C8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopaFilmes.Tests", "CopaFilmes.Tests\CopaFilmes.Tests.csproj", "{5AC5B64C-D6FE-4F56-9129-388EE9EE297A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{469A2219-8DC6-410A-8FC1-276C42906C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{469A2219-8DC6-410A-8FC1-276C42906C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{469A2219-8DC6-410A-8FC1-276C42906C8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AC5B64C-D6FE-4F56-9129-388EE9EE297A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AC5B64C-D6FE-4F56-9129-388EE9EE297A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AC5B64C-D6FE-4F56-9129-388EE9EE297A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AC5B64C-D6FE-4F56-9129-388EE9EE297A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

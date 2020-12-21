@@ -23,7 +23,7 @@ namespace CopaFilme.Business.Services
                 filmes = GenerateResult(filmes);
             }
 
-            return filmes;
+            return filmes.OrderByDescending(n => n.Nota).ToList();
         }
 
         public IList<Movies> GetMovies()
