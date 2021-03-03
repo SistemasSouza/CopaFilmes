@@ -22,9 +22,6 @@ namespace CopaFilmes.Api.Controllers
     {
       var movies = await _moviesService.GetAllMoviesAsync();
 
-      if (movies == null)
-        return StatusCode(500, new {error = "Cannot possible get all movies"});
-      
       if(movies.Count <= 0)
         return NotFound("Movies not found");
 
