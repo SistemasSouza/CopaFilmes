@@ -11,6 +11,8 @@ namespace CopaFilmes.Api.Configuration
             services.AddScoped<IMoviesRepository, MoviesRepository>();
             services.AddScoped<IMoviesService, MoviesService>();
 
+            services.AddScoped<GlobalExceptionHandlingFilter>();
+
             return services;
         }
     }

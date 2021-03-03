@@ -6,6 +6,6 @@ namespace CopaFilmes.Api.Data.Repositories
 {
     public interface IMoviesRepository
     {
-        Task<IList<Movie>> GetAllMoviesAsync();
+        IList<Movie> GetAllMovies();
     }
 }

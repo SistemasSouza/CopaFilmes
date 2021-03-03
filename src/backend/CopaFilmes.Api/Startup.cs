@@ -1,6 +1,7 @@
 using CopaFilmes.Api.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,10 @@ namespace CopaFilmes.Api
 
             services.WebApiConfig();
             services.ResolveDependencies();
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers(options => 
+            {
+              options.Filters.Add(new ServiceFilterAttribute(typeof(GlobalExceptionHandlingFilter)));
+            }).AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

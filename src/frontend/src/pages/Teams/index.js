@@ -6,7 +6,7 @@ import './styles.css';
 
 import Top from '../../components/top'
 
-export default function Times({ history }) {
+export default function Teams({ history }) {
     const phase = `Selecione 8 filmes que você deseja que entrem na competição
     e depois pressione o botão Gerar Meu Campeonato para prosseguir `;
 
@@ -39,12 +39,12 @@ export default function Times({ history }) {
     function handleSubmit() {
         api.post('movies/resultado-final', moviesSelected).then(response => {
             
-            setMoviesSelected([]);
-            sessionStorage.setItem('result', JSON.stringify(response.data));
-            history.push('resultado');
+          setMoviesSelected([]);
+          sessionStorage.setItem('result', JSON.stringify(response.data));
+          history.push('resultado');
         }).catch(_ => {
-            setMoviesSelected([]);
-            alert('Houve um erro ao gerar o campeonato');
+          setMoviesSelected([]);
+          alert('Houve um erro ao gerar o campeonato');
         })
     }
 
