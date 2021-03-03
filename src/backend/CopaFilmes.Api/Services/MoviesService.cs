@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CopaFilmes.Api.Data.Repositories;
+using System.Threading.Tasks;
 
 namespace CopaFilmes.Api.Services
 {
@@ -14,7 +15,7 @@ namespace CopaFilmes.Api.Services
             _moviesRepository = moviesRepository;
         }
 
-        public IList<Movies> GetFinishResult(IList<Movies> movies)
+        public IList<Movie> GetFinishResult(IList<Movie> movies)
         {
             var filmes = movies.OrderBy(o => o.Titulo).ToList();
 
@@ -23,17 +24,17 @@ namespace CopaFilmes.Api.Services
                 filmes = GenerateResult(filmes);
             }
 
-            return filmes.OrderByDescending(n => n.Nota).ToList();
+            return filmes.OrderBy(n => n.Nota).ThenBy(t => t.Titulo).ToList();
         }
 
-        public IList<Movies> GetMovies()
+        public async Task<IList<Movie>> GetMoviesAsync()
         {
-            return _moviesRepository.GetAllMovies();
+            return await _moviesRepository.GetAllMoviesAsync();
         }
 
-        private List<Movies> GenerateResult(List<Movies> filmes)
+        private List<Movie> GenerateResult(List<Movie> filmes)
         {
-            var auxFilmes = new List<Movies>();
+            var auxFilmes = new List<Movie>();
 
             var count = filmes.Count / 2;
 
@@ -42,7 +43,7 @@ namespace CopaFilmes.Api.Services
                 var first = filmes.First();
                 var last = filmes.Last();
 
-                if(first.Nota > last.Nota)
+                if(first.Nota > last.Nota || first.Nota == last.Nota)
                 {
                   auxFilmes.Add(first);
                 }

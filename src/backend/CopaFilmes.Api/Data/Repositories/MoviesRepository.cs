@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using CopaFilmes.Api.Models;
+using System.Threading.Tasks;
 
 namespace CopaFilmes.Api.Data.Repositories
 {
     public class MoviesRepository : IMoviesRepository
     {
-        public IList<Movies> GetAllMovies()
+        public Task<IList<Movie>> GetAllMoviesAsync()
         {
             using var client = new HttpClient();
 
@@ -19,8 +20,8 @@ namespace CopaFilmes.Api.Data.Repositories
 
             response.EnsureSuccessStatusCode();
             var result = response.Content.ReadAsStringAsync().Result;
-
-            return JsonConvert.DeserializeObject<IList<Movies>>(result);
+            
+            return JsonConvert.DeserializeObject<Task<IList<Movie>>>(result);
         }
     }
 }

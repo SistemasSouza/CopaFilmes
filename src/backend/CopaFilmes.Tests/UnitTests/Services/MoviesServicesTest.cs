@@ -25,22 +25,22 @@ namespace CopaFilmes.Tests
         [Fact]
         public void Test1()
         {
-            var moviesSelecteds = new List<Movies>
+            var moviesSelecteds = new List<Movie>
             {
-               new Movies { Id = "1", Ano = 2010, Nota = 6, Titulo ="Transformers"},
-               new Movies { Id = "2", Ano = 2011, Nota = 10, Titulo ="Deadpool"},
-               new Movies { Id = "3", Ano = 2012, Nota = 5.5F, Titulo ="Carros 2"},
-               new Movies { Id = "4", Ano = 2013, Nota = 5, Titulo ="Os Incriveis"},
-               new Movies { Id = "5", Ano = 2014, Nota = 5, Titulo ="A espera de um milagre"},
-               new Movies { Id = "6", Ano = 2015, Nota = 7, Titulo ="A procura da felicidade"},
-               new Movies { Id = "7", Ano = 2016, Nota = 8.5F, Titulo ="12 homens e um segredo"},
-               new Movies { Id = "8", Ano = 2017, Nota = 10, Titulo ="Mulher maravilha"},
+               new Movie { Id = "1", Ano = 2010, Nota = 6, Titulo ="Transformers"},
+               new Movie { Id = "2", Ano = 2011, Nota = 10, Titulo ="Deadpool"},
+               new Movie { Id = "3", Ano = 2012, Nota = 5.5F, Titulo ="Carros 2"},
+               new Movie { Id = "4", Ano = 2013, Nota = 5, Titulo ="Os Incriveis"},
+               new Movie { Id = "5", Ano = 2014, Nota = 5, Titulo ="A espera de um milagre"},
+               new Movie { Id = "6", Ano = 2015, Nota = 7, Titulo ="A procura da felicidade"},
+               new Movie { Id = "7", Ano = 2016, Nota = 8.5F, Titulo ="12 homens e um segredo"},
+               new Movie { Id = "8", Ano = 2017, Nota = 10, Titulo ="Mulher maravilha"},
             };
 
-            var moviesChampions = new List<Movies> 
+            var moviesChampions = new List<Movie> 
             {
-              new Movies { Id = "2", Ano = 2011, Nota = 9, Titulo ="Deadpool"},
-              new Movies { Id = "8", Ano = 2017, Nota = 10, Titulo ="Mulher maravilha"},
+              new Movie { Id = "2", Ano = 2011, Nota = 9, Titulo ="Deadpool"},
+              new Movie { Id = "8", Ano = 2017, Nota = 10, Titulo ="Mulher maravilha"},
             };
 
             _moviesServiceMock.Setup(_ => _.GetFinishResult(moviesSelecteds)).Returns(moviesChampions);

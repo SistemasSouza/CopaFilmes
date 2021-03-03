@@ -1,6 +1,6 @@
 ﻿namespace CopaFilmes.Api.Models
 {
-    public class Movies
+    public class Movie
     {
       public string Id { get; set; }
       public string Titulo { get; set; }
