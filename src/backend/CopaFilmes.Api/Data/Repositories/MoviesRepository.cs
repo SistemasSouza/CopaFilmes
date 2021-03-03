@@ -1,13 +1,10 @@
-﻿using CopaFilme.Business.Interfaces;
-using CopaFilme.Business.Model;
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
+using CopaFilmes.Api.Models;
 
-namespace CopaFilmes.Data.Repositories
+namespace CopaFilmes.Api.Data.Repositories
 {
     public class MoviesRepository : IMoviesRepository
     {

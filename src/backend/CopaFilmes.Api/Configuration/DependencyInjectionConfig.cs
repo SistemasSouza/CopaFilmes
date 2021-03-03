@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using CopaFilme.Business.Interfaces;
-using CopaFilme.Business.Services;
-using CopaFilmes.Data.Repositories;
+﻿using CopaFilmes.Api.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using CopaFilmes.Api.Services;
 
 namespace CopaFilmes.Api.Configuration
 {
@@ -10,7 +8,6 @@ namespace CopaFilmes.Api.Configuration
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IMoviesRepository, MoviesRepository>();
             services.AddScoped<IMoviesService, MoviesService>();
 

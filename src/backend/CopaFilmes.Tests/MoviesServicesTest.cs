@@ -1,10 +1,10 @@
-using CopaFilme.Business.Interfaces;
-using CopaFilme.Business.Model;
-using CopaFilme.Business.Services;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
+using CopaFilmes.Api.Models;
+using CopaFilmes.Api.Services;
+using CopaFilmes.Api.Data.Repositories;
 
 namespace CopaFilmes.Tests
 {

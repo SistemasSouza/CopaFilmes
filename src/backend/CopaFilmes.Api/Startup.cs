@@ -37,8 +37,6 @@ namespace CopaFilmes.Api
 
             app.UseRouting();
 
-            //app.UseAuthorization();
-
             app.UseCors(options => options
                 .AllowAnyOrigin()
                 .AllowAnyMethod()

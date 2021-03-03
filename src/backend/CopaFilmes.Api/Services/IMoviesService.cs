@@ -1,7 +1,7 @@
-﻿using CopaFilme.Business.Model;
+﻿using CopaFilmes.Api.Models;
 using System.Collections.Generic;
 
-namespace CopaFilme.Business.Interfaces
+namespace CopaFilmes.Api.Services
 {
     public interface IMoviesService
     {

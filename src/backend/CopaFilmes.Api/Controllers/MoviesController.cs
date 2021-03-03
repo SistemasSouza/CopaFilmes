@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using CopaFilme.Business.Interfaces;
-using CopaFilme.Business.Model;
-using CopaFilmes.Api.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using CopaFilmes.Api.Models;
+using CopaFilmes.Api.Services;
 
 namespace CopaFilmes.Api.Controllers
 {
@@ -12,24 +10,22 @@ namespace CopaFilmes.Api.Controllers
     public class MoviesController : ControllerBase
     {
         private readonly IMoviesService _moviesService;
-        private readonly IMapper _mapper;
 
-        public MoviesController(IMoviesService moviesService, IMapper mapper)
+        public MoviesController(IMoviesService moviesService)
         {
             _moviesService = moviesService;
-            _mapper = mapper;
         }
 
         [HttpGet("obter-todos-filmes")]
         public ActionResult GetAll()
         {
-            return Ok(_mapper.Map<List<Movies>>(_moviesService.GetMovies()));
+            return Ok(_moviesService.GetMovies());
         }
 
         [HttpPost("resultado-final")]
-        public ActionResult GetFinishResult(List<MoviesViewModel> filmes)
+        public ActionResult GetFinishResult(List<Movies> movies)
         {
-            return Ok(_moviesService.GetFinishResult(_mapper.Map<List<Movies>>(filmes)));
+            return Ok(_moviesService.GetFinishResult(movies));
         }
     }
 }

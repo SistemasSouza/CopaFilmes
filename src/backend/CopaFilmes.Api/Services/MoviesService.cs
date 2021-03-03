@@ -1,9 +1,9 @@
-﻿using CopaFilme.Business.Interfaces;
-using CopaFilme.Business.Model;
+﻿using CopaFilmes.Api.Models;
 using System.Collections.Generic;
 using System.Linq;
+using CopaFilmes.Api.Data.Repositories;
 
-namespace CopaFilme.Business.Services
+namespace CopaFilmes.Api.Services
 {
     public class MoviesService : IMoviesService
     {
@@ -42,7 +42,15 @@ namespace CopaFilme.Business.Services
                 var first = filmes.First();
                 var last = filmes.Last();
 
-                auxFilmes.Add(first.Nota > last.Nota ? first : last);
+                if(first.Nota > last.Nota)
+                {
+                  auxFilmes.Add(first);
+                }
+                else
+                {
+                  auxFilmes.Add(last);
+                }
+
                 filmes.Remove(first);
                 filmes.Remove(last);
             }
