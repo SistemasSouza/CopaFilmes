@@ -6,6 +6,7 @@ using CopaFilmes.Api.Models;
 using CopaFilmes.Api.Services;
 using CopaFilmes.Api.Data.Repositories;
 using CopaFilmes.Tests.Fixtures;
+using System;
 
 namespace CopaFilmes.Tests
 {
@@ -30,7 +31,7 @@ namespace CopaFilmes.Tests
     [Theory]
     [MemberData(nameof(MovieTestsFixture.MoviesParameters), MemberType = typeof(MovieTestsFixture))]
     [Trait("Category", "Unit")]
-    public void GeneratedFinishResult_ShouldReturn_TwoMoviesFinalist(List<Movie> movies, List<Movie> moviesChampions)
+    public void GenerateFinishResult_ShouldReturn_TwoMoviesFinalist(List<Movie> movies, List<Movie> moviesChampions)
     {
       var moviesSelecteds = movies;
 
@@ -41,6 +42,16 @@ namespace CopaFilmes.Tests
       Assert.Equal(2, result.Count);
       Assert.Equal(moviesChampions.FirstOrDefault().Title, result.FirstOrDefault().Title);
       Assert.Equal(moviesChampions.LastOrDefault().Title, result.LastOrDefault().Title);
+    }
+
+    [Fact]
+    public void GeneratedFinishResult_ShouldReturn_ExceptionWhenAnyInGeneratedResult()
+    {
+      List<Movie> movies = null;
+
+      _moviesServiceMock.Setup(_ => _.GetFinishResult(movies)).Throws(new Exception("Cannot possible generate finish result"));
+
+      Assert.Throws<Exception>(() => _service.GetFinishResult(movies));
     }
   }
 }

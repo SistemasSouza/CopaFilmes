@@ -20,14 +20,9 @@ namespace CopaFilmes.Api.Services
     {
       try
       {
-        var moviesResult = movies.OrderBy(_ => _.Title).ToList();
+        movies = movies.OrderBy(_ => _.Title).ToList();
 
-        for (int i = 0; i < FINALISTQUANTITY; i++)
-        {
-          moviesResult = GenerateResult(moviesResult);
-        }
-
-        return moviesResult.OrderByDescending(_ => _.Score).ThenBy(_ => _.Title).ToList();
+        return GenerateResultFinal(movies);
       }
       catch (System.Exception)
       {
@@ -47,7 +42,34 @@ namespace CopaFilmes.Api.Services
       }
     }
 
-    private List<Movie> GenerateResult(List<Movie> movies)
+    private List<Movie> GenerateResultFinal(IList<Movie> movies)
+    {
+      var moviesClassifiedInLevelOne = GenerateResultLevelOne(movies);
+      var moviesFinalist = new List<Movie>();
+
+
+      for (int i = 0; i < FINALISTQUANTITY; i++)
+      {
+        var auxMovies = moviesClassifiedInLevelOne.Take(FINALISTQUANTITY).OrderBy(_ => _.Title);
+
+        var first = auxMovies.First();
+        var second = auxMovies.Last();
+
+        if (first.Score > second.Score || first.Score == second.Score)
+        {
+          moviesFinalist.Add(first);
+        }
+        else
+        {
+          moviesFinalist.Add(second);
+        }
+        moviesClassifiedInLevelOne.Remove(first);
+        moviesClassifiedInLevelOne.Remove(second);
+        auxMovies = null;
+      }
+      return moviesFinalist.OrderByDescending(_ => _.Score).ThenBy(_ => _.Title).ToList();
+    }
+    private List<Movie> GenerateResultLevelOne(IList<Movie> movies)
     {
       var auxMovies = new List<Movie>();
 
