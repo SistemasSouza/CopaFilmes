@@ -12,7 +12,7 @@ namespace CopaFilmes.Tests.Fixtures
   }
   public class MovieTestsFixture : IDisposable
   {
-    public List<Movie> GetAllMovies()
+    public List<Movie> MoviesValid()
     {
       return new List<Movie>
       {
@@ -32,6 +32,20 @@ namespace CopaFilmes.Tests.Fixtures
         new Movie {Id = new Random().Next().ToString(),Title = "Hotel Artemis", Year = 2018, Score = 6.3F},
         new Movie {Id = new Random().Next().ToString(),Title = "Superfly", Year = 2018, Score = 5.1F},
         new Movie {Id = new Random().Next().ToString(),Title = "Upgrade", Year = 2018, Score = 7.8F},
+      };
+    }
+    public List<Movie> MoviesSelected()
+    {
+      return new List<Movie>
+      {
+        new Movie {Id = new Random().Next().ToString(),Title = "Os Incriveis 2", Year = 2018, Score = 8.5F},
+        new Movie {Id = new Random().Next().ToString(),Title = "Jurassic World: Reino Ameaçado", Year = 2018, Score = 6.7F},
+        new Movie {Id = new Random().Next().ToString(),Title = "Oito Mulheres e um Segredo", Year = 2018, Score = 6.3F},
+        new Movie {Id = new Random().Next().ToString(),Title = "Hereditário", Year = 2018, Score = 7.8F},
+        new Movie {Id = new Random().Next().ToString(),Title = "Vingadores: Guerra Infinita", Year = 2018, Score = 8.8F},
+        new Movie {Id = new Random().Next().ToString(),Title = "Deadpool 2", Year = 2018, Score = 8.1F},
+        new Movie {Id = new Random().Next().ToString(),Title = "Han Solo: Uma História Star Wars", Year = 2018, Score = 7.2F},
+        new Movie {Id = new Random().Next().ToString(),Title = "Thor: Ragnarok", Year = 2017, Score = 7.6F},
       };
     }
 

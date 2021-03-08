@@ -6,7 +6,7 @@ using Xunit;
 
 namespace CopaFilmes.Tests.IntegrationsTests.Api.Configuration
 {
-  [Collection("Base Collection")]
+  [Collection("Base collection")]
   public class BaseIntegrationTest : IDisposable
   {
     public readonly TestServer Server;

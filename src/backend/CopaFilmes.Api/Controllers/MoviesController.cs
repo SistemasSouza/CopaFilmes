@@ -17,7 +17,7 @@ namespace CopaFilmes.Api.Controllers
       _moviesService = moviesService;
     }
 
-    [HttpGet("obter-todos-filmes")]
+    [HttpGet("get-all")]
     public async Task<IActionResult> GetAll()
     {
       var movies = await _moviesService.GetAllMoviesAsync();
@@ -28,7 +28,7 @@ namespace CopaFilmes.Api.Controllers
       return Ok(movies);
     }
 
-    [HttpPost("resultado-final")]
+    [HttpPost("finish-result")]
     public async Task<IActionResult> GetFinishResult(List<Movie> movies)
     {
       if (movies == null || movies.Count < 8)

@@ -29,7 +29,7 @@ namespace CopaFilmes.Tests.UnitTests.Controllers
     [Trait("Category", "Unit")]
     public void GetAll_ShouldReturn200_WhenGetAllMoviesWithSuccess()
     {
-      var movies = _movieTestsFixture.GetAllMovies();
+      var movies = _movieTestsFixture.MoviesValid();
 
       _moviesServicesMock.Setup(_ => _.GetAllMoviesAsync()).ReturnsAsync(movies);
 
@@ -60,7 +60,7 @@ namespace CopaFilmes.Tests.UnitTests.Controllers
     [Trait("Category", "Unit")]
     public void GetFinishResult_ShouldReturn200_WhenResultFinishGeneratedWithSuccess()
     {
-      var movies = _movieTestsFixture.GetAllMovies();
+      var movies = _movieTestsFixture.MoviesValid();
       var moviesChampions = new List<Movie>
           {
             new Movie {Id = new Random().Next().ToString(),Title = "Os Incriveis", Year = 2010, Score = 7.5F},
