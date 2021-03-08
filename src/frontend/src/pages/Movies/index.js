@@ -22,7 +22,7 @@ export default function Movies({ history }) {
     setLoading(true);
 
     async function loadMovies() {
-      let response = await api.get('/movies/obter-todos-filmes');
+      let response = await api.get('/movies/get-all');
       setMovies(response.data);
       setLoading(false);
     }
@@ -47,7 +47,7 @@ export default function Movies({ history }) {
       return;
     }
 
-    api.post('movies/resultado-final', moviesSelected).then(response => {
+    api.post('movies/finish-result', moviesSelected).then(response => {
 
       setMoviesSelected([]);
       sessionStorage.setItem('result', JSON.stringify(response.data));
@@ -92,7 +92,7 @@ export default function Movies({ history }) {
                 (movies || []).map((movie) => (
                   <li className="movies-item" key={movie.id}>
                     <label className="container-check">
-                      <input type="checkbox" value={movie.id} onChange={(e) => handleChange(e)} className="disable-checkbox" />
+                      <input type="checkbox" data-testid={movie.id} value={movie.id} onChange={(e) => handleChange(e)} className="disable-checkbox" />
                       <span className="checkmark"></span>
                     </label>
                     <div className="info-movie">
