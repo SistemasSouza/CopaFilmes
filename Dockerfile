@@ -3,4 +3,4 @@ WORKDIR /app
 EXPOSE 80
 
 COPY publish/ ./
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet CopaFilmes.Api.dll
+CMD ASPNETCORE_URLS=http://*:5000 dotnet CopaFilmes.Api.dll
