@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api.services';
 
@@ -8,7 +9,8 @@ import Top from '../../components/top'
 
 import loadingGif from '../../assets/loading.gif'
 
-export default function Movies({ history }) {
+export default function Movies() {
+  const history = useHistory();
   const phase = `Selecione 8 filmes que você deseja que entrem na competição
     e depois pressione o botão Gerar Meu Campeonato para prosseguir `;
 
@@ -42,20 +44,13 @@ export default function Movies({ history }) {
   }
 
   function handleSubmit() {
-    if (moviesSelected.length > 8) {
+    if (moviesSelected.length !== 8) {
       alert('Você deve selecionar apenas 8 filmes para disputar o campeonato')
       return;
     }
 
-    api.post('movies/finish-result', moviesSelected).then(response => {
-
-      setMoviesSelected([]);
-      sessionStorage.setItem('result', JSON.stringify(response.data));
-      history.push('resultado');
-    }).catch(_ => {
-      setMoviesSelected([]);
-      alert('Houve um erro ao gerar o campeonato');
-    })
+    sessionStorage.setItem('result', JSON.stringify(moviesSelected));
+    history.push('resultado');
   }
 
   function toogleMoviesSelected(idMovie, isChecked) {

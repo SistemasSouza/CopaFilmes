@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { render, fireEvent, act, wait, waitForElement } from '@testing-library/react';
+import { render, fireEvent, wait, waitForElement } from '@testing-library/react';
+
 import AxiosMock from 'axios-mock-adapter';
 import api from '../../services/api.services';
 
@@ -8,9 +9,22 @@ import Movies from '../../pages/Movies';
 
 const apiMock = new AxiosMock(api);
 
+const mockedHistoryPush = jest.fn()
+
+jest.mock('react-router-dom', () => {
+  return {
+    ...jest.requireActual('react-router-dom'),
+    useHistory: () => ({
+      push: mockedHistoryPush,
+    }),
+  }
+})
+
+jest.spyOn(window, 'alert').mockImplementation(() => { })
+
 describe('Movies', () => {
   it('should be able list all movies from api', async () => {
-    apiMock.onGet('/movies/obter-todos-filmes').reply(200, [
+    apiMock.onGet('/movies/get-all').reply(200, [
       {
         "id": "tt3606756",
         "titulo": "Os Incríveis 2",
@@ -39,16 +53,16 @@ describe('Movies', () => {
 
     expect(getByText('Os Incríveis 2')).toBeTruthy();
     expect(getByTestId('tt3606756'))
-    
+
     expect(getByText('Jurassic World: Reino Ameaçado')).toBeTruthy();
     expect(getByTestId('tt4881806'))
-    
+
     expect(getByText('Oito Mulheres e um Segredo')).toBeTruthy();
     expect(getByTestId('tt5164214'))
   });
 
-  it('Should be select movie in list', async () => {
-    apiMock.onGet('/movies/obter-todos-filmes').reply(200, [
+  it('Should be select/deselect a movie in list', async () => {
+    apiMock.onGet('/movies/get-all').reply(200, [
       {
         "id": "tt3606756",
         "titulo": "Os Incríveis 2",
@@ -57,7 +71,6 @@ describe('Movies', () => {
       }
     ]);
     const { getByText, getByTestId } = render(<Movies />);
-    const countMovies = 1;
 
     await wait(() => expect(getByText('Os Incríveis 2')).toBeTruthy(), {
       timeout: 200,
@@ -67,10 +80,23 @@ describe('Movies', () => {
     expect(getByTestId('tt3606756'));
 
     const inputCheckboxNode = await waitForElement(() => getByTestId('tt3606756'));
-    
-    fireEvent.change(inputCheckboxNode, { target: { checked: true }})
 
-    expect(inputCheckboxNode.checked).toBe(true);
-    expect(inputCheckboxNode.value).toEqual('tt3606756');
+    fireEvent.change(inputCheckboxNode, { target: { checked: true } })
+
+    expect(inputCheckboxNode.checked).toEqual(true);
+
+    fireEvent.change(inputCheckboxNode, { target: { checked: false } })
+
+    expect(inputCheckboxNode.checked).toEqual(false);
+  });
+
+  it('should be not redirect to page result when quantity selected movies is invalid', async () => {
+    const { getByText } = render(<Movies />);
+    const buttonNode = await waitForElement(() => getByText('Gerar meu campeonato'));
+
+    fireEvent.click(buttonNode);
+
+    expect(mockedHistoryPush).toHaveBeenCalledTimes(0);
+    expect(window.alert).toBeCalledWith('Você deve selecionar apenas 8 filmes para disputar o campeonato');
   });
 })
