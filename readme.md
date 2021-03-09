@@ -26,9 +26,9 @@ O projetos backend e frontend são cobertos por testes automatizados, para rodar
 
 ## Rodando o projeto no terminal
 
-Caso queira apenas testar o projeto, baixe a pasta `publish` para  a máquina local e executar o seguinte comando no terminal.
+Caso queira apenas testar o projeto, baixe a pasta `publish` para  a máquina local e executar o seguinte comando no terminal a partir da raiz do projeto.
 
-**dotnet publish/copafilmes.api.dll**
+`cd publish && dotnet CopaFilmes.Api.dll`
 
 após executar o comando o projeto será executado no localhost  na porta 5000
 
