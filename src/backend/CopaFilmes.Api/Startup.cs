@@ -44,8 +44,8 @@ namespace CopaFilmes.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            // app.UseStaticFiles();
+            // app.UseSpaStaticFiles();
 
             app.UseRouting();
 
@@ -61,15 +61,15 @@ namespace CopaFilmes.Api
             });
 
             
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = Path.Join(env.ContentRootPath, "ClientApp");
+            // app.UseSpa(spa =>
+            // {
+            //     spa.Options.SourcePath = Path.Join(env.ContentRootPath, "ClientApp");
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
-            });
+            //     if (env.IsDevelopment())
+            //     {
+            //         spa.UseReactDevelopmentServer(npmScript: "start");
+            //     }
+            // });
         }
     }
 }
