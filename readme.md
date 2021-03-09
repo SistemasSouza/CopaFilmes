@@ -21,6 +21,8 @@ O projetos backend e frontend são cobertos por testes automatizados, para rodar
 - backend
   - `dotnet test src/backend/CopaFilmes.Tests`
 - frontend 
+
+  - `yarn` ou `npm install` (recuperar dependências do projeto) 
   - `cd src/frontend && npm run test`
    ou 
   - `cd src/frontend && yarn test`
@@ -43,3 +45,5 @@ ao executar o projeto,  o mesmo subirá tanto o frontend quanto o backend simult
 Após acessar a url, o usuário verá a tela com os filmes participantes do campeonato, o mesmo deve selecionar 8 filmes e clicar no botão **Gerar meu campeonato**, ao clicar no botão as filmes serão enviados para o backend no qual realizar o campeonato e devolverá o resultado do vencedor e o segundo lugar.
 
 ![Alt Text](https://media.giphy.com/media/hRyAVX1q7bQwSLKLLb/giphy.gif)
+
+Em caso de dúvidas, entre em contato comigo no e-mail: denyssouza1@hotmail.com
