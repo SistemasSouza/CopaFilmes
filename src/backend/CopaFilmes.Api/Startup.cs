@@ -25,10 +25,15 @@ namespace CopaFilmes.Api
 
             services.WebApiConfig();
             services.ResolveDependencies();
-            services.AddControllers(options => 
+            services.AddControllersWithViews(options => 
             {
               options.Filters.Add(new ServiceFilterAttribute(typeof(GlobalExceptionHandlingFilter)));
             }).AddNewtonsoftJson();
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/build";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +43,9 @@ namespace CopaFilmes.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
 
             app.UseRouting();
 
@@ -52,11 +60,10 @@ namespace CopaFilmes.Api
                 endpoints.MapControllers();
             });
 
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = Path.Join(env.ContentRootPath, "frontend");
+                spa.Options.SourcePath = Path.Join(env.ContentRootPath, "ClientApp");
 
                 if (env.IsDevelopment())
                 {
