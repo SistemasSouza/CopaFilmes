@@ -22,7 +22,7 @@ O projetos backend e frontend são cobertos por testes automatizados, para rodar
   - `dotnet test src/backend/CopaFilmes.Tests`
 - frontend 
 
-  - `yarn` ou `npm install` (recuperar dependências do projeto) 
+  - `cd src/frontend && yarn` ou `cd src/frontend && npm install` (recuperar dependências do projeto) 
   - `cd src/frontend && npm run test`
    ou 
   - `cd src/frontend && yarn test`
